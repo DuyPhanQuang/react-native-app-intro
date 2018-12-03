@@ -1,5 +1,7 @@
 import assign from 'assign-deep';
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import {
   StatusBar,
   StyleSheet,
@@ -12,6 +14,7 @@ import {
   Platform,
 } from 'react-native';
 import Swiper from 'react-native-swiper';
+import DeviceInfo from 'react-native-device-info';
 import DoneButton from './components/DoneButton';
 import SkipButton from './components/SkipButton';
 import RenderDots from './components/Dots';
@@ -70,7 +73,7 @@ const defaulStyles = {
   },
   paginationContainer: {
     position: 'absolute',
-    bottom: 25,
+    bottom: (DeviceInfo.getModel() === 'iPhone X') ? 50 : 25,
     left: 0,
     right: 0,
     flexDirection: 'row',
@@ -90,6 +93,7 @@ const defaulStyles = {
     justifyContent: 'center',
     alignItems: 'center',
     height: 50,
+    paddingLeft: 20,
   },
   nextButtonText: {
     fontSize: 25,
@@ -97,11 +101,19 @@ const defaulStyles = {
     fontFamily: 'Arial',
   },
   full: {
+    paddingRight: 30,
     height: 80,
     width: 100,
     justifyContent: 'center',
     alignItems: 'center',
   },
+  fullDone: {
+    marginLeft: 20,
+    height: 80,
+    width: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 }
 
 export default class AppIntro extends Component {
